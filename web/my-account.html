@@ -1,0 +1,349 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Smart Trade</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/newimgs/logoE2.png" type="image/x-icon" />
+
+    <!-- CSS
+        ============================================ -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/vendor/flaticon/flaticon.css">
+    <link rel="stylesheet" href="assets/css/vendor/slick.css">
+    <link rel="stylesheet" href="assets/css/vendor/slick-theme.css">
+    <link rel="stylesheet" href="assets/css/vendor/jquery-ui.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/sal.css">
+    <link rel="stylesheet" href="assets/css/vendor/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/vendor/base.css">
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    <link rel="stylesheet" href="assets/css/notification.css" />
+
+
+</head>
+
+
+<body class="sticky-header">
+    <!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+    <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
+
+
+    <main class="main-wrapper">
+
+
+        <!-- Start My Account Area  -->
+        <div class="axil-dashboard-area mt--30 mb--50">
+            <div class="container">
+                <div class="axil-dashboard-warp">
+                    <div class="axil-dashboard-author">
+                        <div class="media">
+                            <div class="thumbnail">
+                                <img src="./assets/images/avatar.png" style="height: 48px" alt="Hello Annie">
+                            </div>
+                            <div class="media-body">
+                                <h5 class="title mb-0">Hello Name</h5>
+                                <span class="joining-date">Smart Trade Member Since Sep 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-md-4">
+                            <aside class="axil-dashboard-aside">
+                                <nav class="axil-dashboard-nav">
+                                    <div class="nav nav-tabs" role="tablist">
+                                        <a class="nav-item nav-link active" data-bs-toggle="tab" href="#nav-account"
+                                            role="tab" aria-selected="false"><i class="fas fa-user"></i>Account
+                                            Details</a>
+                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-add-product"
+                                            role="tab" aria-selected="true"><i
+                                                class="fas fa-mobile-alt"></i>Products</a>
+                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-product-listing"
+                                            role="tab" aria-selected="false"><i class="fas fa-list"></i>Product
+                                            Listing</a>
+                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-orders" role="tab"
+                                            aria-selected="false"><i class="fas fa-shopping-basket"></i>Orders</a>
+                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-address" role="tab"
+                                            aria-selected="false"><i class="fas fa-home"></i>Addresses</a>
+                                        <a class="nav-item nav-link" href="#"><i class="fal fa-sign-out"></i>Logout</a>
+                                    </div>
+                                </nav>
+                            </aside>
+                        </div>
+                        <div class="col-xl-9 col-md-8">
+                            <div class="tab-content">
+
+                                <div class="tab-pane fade" id="nav-add-product" role="tabpanel">
+                                    <div class="axil-dashboard-overview">
+                                        <div class="welcome-text">Create New Product</div>
+                                        <p class="text-danger" id="message"></p>
+
+                                        <form class="account-details-form">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Category</label>
+                                                        <select id="category-select" onchange="updateModels();">
+                                                            <option value="0">Select Category</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Model</label>
+                                                        <select id="model-select">
+                                                            <option value="0">Select Model</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label>Title</label>
+                                                        <input type="text" class="form-control" value="" id="title">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label>Description</label>
+                                                        <textarea cols="1" rows="2" id="description"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Storage</label>
+                                                        <select id="storage-select">
+                                                            <option value="0">Select Storage</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Color</label>
+                                                        <select id="colorSelect">
+                                                            <option value="0">Select Color</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Condition</label>
+                                                        <select id="condition-select">
+                                                            <option value="0">Select Condition</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Price</label>
+                                                        <input type="text" class="form-control"
+                                                            pattern="^\d+(\.\d{2})?$" placeholder="0.00" id="price">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Quantity</label>
+                                                        <input type="number" class="form-control" min="1" value="1"
+                                                            id="quantity">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <label>Image 1</label>
+                                                    <input class="form-control b2" type="file" accept="image/*"
+                                                        id="image1">
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <label>Image 2</label>
+                                                    <input class="form-control b2" type="file" accept="image/*"
+                                                        id="image2">
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <label>Image 3</label>
+                                                    <input class="form-control b2" type="file" accept="image/*"
+                                                        id="image3">
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <div class="form-group mb--0 mt--30 d-grid">
+                                                        <input type="button" class="axil-btn"
+                                                            value="Add Product To Listing" onclick="productListing();">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="nav-orders" role="tabpanel">
+                                    <div class="axil-dashboard-order">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Order</th>
+                                                        <th scope="col">Products</th>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Total</th>
+                                                        <th scope="col">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">#1234</th>
+                                                        <td>Apple iPhone 15 Pro <br /> Samsung Galaxy Note 20</td>
+                                                        <td>September 02, 2024</td>
+                                                        <td>Delivered</td>
+                                                        <td>Rs 0.00</td>
+                                                        <td><a href="#" class="axil-btn view-btn">View</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="nav-product-listing" role="tabpanel">
+                                    <div class="axil-dashboard-order">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Id</th>
+                                                        <th scope="col">Title</th>
+                                                        <th scope="col">Price</th>
+                                                        <th scope="col">Quantity</th>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">#1234</th>
+                                                        <td>Apple iPhone 15 Pro</td>
+                                                        <td>Rs 0.00</td>
+                                                        <td>1</td>
+                                                        <td>September 02, 2024</td>
+                                                        <td><a href="#" class="axil-btn view-btn">View</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="nav-address" role="tabpanel">
+                                    <div class="axil-dashboard-address">
+                                        <div class="row row--30">
+                                            <div class="col-lg-12">
+                                                <div class="address-info mb--40">
+                                                    <div
+                                                        class="addrss-header d-flex align-items-center justify-content-between">
+                                                        <h4 class="title mb-0">Current Shipping Address</h4>
+                                                        <a href="#" class="address-edit"><i class="far fa-edit"></i></a>
+                                                    </div>
+                                                    <ul class="address-details">
+                                                        <li>Name: Name</li>
+                                                        <li>Email: example@email.com</li>
+                                                        <li>Phone: +94 77 121 2234</li>
+                                                        <li class="mt--30">No.3B 1/4, Sri Sambuddhathva Jayanthi
+                                                            Mawatha<br>
+                                                            Colombo 00500, Sri Lanka</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade show active" id="nav-account" role="tabpanel">
+                                    <div class="col-lg-9">
+                                        <div class="axil-dashboard-account">
+                                            <form class="account-details-form">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>First Name</label>
+                                                            <input type="text" class="form-control" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Last Name</label>
+                                                            <input type="text" class="form-control" value="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <h5 class="title">Password Change</h5>
+                                                        <div class="form-group">
+                                                            <label>Current Password</label>
+                                                            <input type="password" class="form-control"
+                                                                value="123456789">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>New Password</label>
+                                                            <input type="password" class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Confirm New Password</label>
+                                                            <input type="password" class="form-control">
+                                                        </div>
+                                                        <div class="form-group mb--0 d-grid">
+                                                            <input type="submit" class="axil-btn" value="Save Changes">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End My Account Area  -->
+
+    </main>
+
+
+
+    <!-- JS
+    ============================================ -->
+    <!-- Modernizer JS -->
+    <script src="assets/js/vendor/modernizr.min.js"></script>
+    <!-- jQuery JS -->
+    <script src="assets/js/vendor/jquery.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="assets/js/vendor/popper.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <script src="assets/js/vendor/slick.min.js"></script>
+    <script src="assets/js/vendor/js.cookie.js"></script>
+    <!-- <script src="assets/js/vendor/jquery.style.switcher.js"></script> -->
+    <script src="assets/js/vendor/jquery-ui.min.js"></script>
+    <script src="assets/js/vendor/jquery.ui.touch-punch.min.js"></script>
+    <script src="assets/js/vendor/jquery.countdown.min.js"></script>
+    <script src="assets/js/vendor/sal.js"></script>
+    <script src="assets/js/vendor/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/vendor/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/js/vendor/isotope.pkgd.min.js"></script>
+    <script src="assets/js/vendor/counterup.js"></script>
+    <script src="assets/js/vendor/waypoints.min.js"></script>
+
+</body>
+
+</html>

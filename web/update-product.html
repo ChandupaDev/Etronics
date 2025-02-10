@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ETronics| Update Product</title>
+    <link rel="stylesheet" href="assets/css/style.min.css" />
+    <link rel="shortcut icon" href="img/newimgs/logoE2.png" type="image/x-icon" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .form-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      .form-group select,
+      .form-group input,
+      .form-group textarea,
+      .form-group button {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        height: 100px;
+      }
+
+      .form-group button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .form-group button:hover {
+        background-color: #0056b3;
+      }
+
+      @media (max-width: 600px) {
+        .form-container {
+          padding: 15px;
+        }
+
+        .form-group label {
+          font-size: 14px;
+        }
+
+        .form-group select,
+        .form-group input,
+        .form-group textarea,
+        .form-group button {
+          font-size: 14px;
+        }
+      }
+    </style>
+
+    <script defer>
+      async function updateProduct(productId) {
+        const titleList = document.getElementById("product-select");
+        const title = titleList.options[titleList.selectedIndex].text;
+        const description = document.getElementById("description").value;
+        const price = parseFloat(document.getElementById("price").value);
+        const qty = parseInt(document.getElementById("quantity").value);
+        const colorId = parseInt(document.getElementById("colorSelect").value);
+        const modelId = parseInt(document.getElementById("model-select").value);
+        const categoryId = parseInt(
+          document.getElementById("category-select").value,
+        );
+
+        if (!productId || isNaN(productId)) {
+          console.error(`Invalid product ID: ${productId}`);
+          return;
+        }
+
+        if (
+          !title ||
+          !description ||
+          isNaN(price) ||
+          isNaN(qty) ||
+          isNaN(colorId) ||
+          isNaN(modelId) ||
+          isNaN(categoryId)
+        ) {
+          console.error("Missing or invalid product data.");
+          return;
+        }
+
+        const req = {};
+        const formData = new FormData();
+        req.productId = productId;
+        req.title = title;
+        req.description = description;
+        req.price = price;
+        req.quantity = qty;
+        req.colorId = colorId;
+        req.modelId = modelId;
+        req.categoryId = categoryId;
+
+        try {
+          const response = await fetch("UpdateProduct", {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(req),
+          });
+
+          if (response.ok) {
+            const result = await response.json(); // Parse JSON response
+            if (result.success) {
+              alert("Success: " + result.content);
+            } else {
+              alert("Error: " + result.content);
+            }
+          } else {
+            console.error("Failed to update product. Status:", response.status);
+          }
+        } catch (error) {
+          console.error("Error updating product:", error);
+        }
+      }
+
+      // Ensure DOM is ready before adding event listeners
+      document.addEventListener("DOMContentLoaded", function () {
+        const updateBtn = document.getElementById("update-btn");
+        updateBtn.addEventListener("click", () => {
+          const productId = document.getElementById("product-select").value;
+          updateProduct(productId);
+        });
+      });
+    </script>
+  </head>
+
+  <body onload="loadFeatures();">
+    <main>
+      <div class="form-container">
+        <form>
+          <div class="form-group">
+            <label>Select Product</label>
+            <select
+              id="product-select"
+              onchange="fillProductDetails(this.value);"
+            >
+              <option value="0">Select Product</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <select id="category-select" onchange="updateModels();">
+              <option value="0">Select Category</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Model</label>
+            <select id="model-select">
+              <option value="0">Select Model</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" id="title" />
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="description"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Color</label>
+            <select id="colorSelect">
+              <option value="0">Select Color</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Price</label>
+            <input type="number" id="price" />
+          </div>
+
+          <div class="form-group">
+            <label>Quantity</label>
+            <input type="number" id="quantity" />
+          </div>
+
+          <div class="form-group">
+            <label>Image 1</label>
+            <input type="file" id="image1" />
+          </div>
+
+          <div class="form-group">
+            <label>Image 2</label>
+            <input type="file" id="image2" />
+          </div>
+
+          <div class="form-group">
+            <label>Image 3</label>
+            <input type="file" id="image3" />
+          </div>
+
+          <div class="form-group">
+            <button type="button" id="update-btn">Update Product</button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- JS
+    ============================================ -->
+    <!-- Modernizer JS -->
+    <script src="assets/js/vendor/modernizr.min.js"></script>
+    <!-- jQuery JS -->
+    <script src="assets/js/vendor/jquery.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="assets/js/vendor/popper.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <script src="assets/js/vendor/slick.min.js"></script>
+    <script src="assets/js/vendor/js.cookie.js"></script>
+    <!-- <script src="assets/js/vendor/jquery.style.switcher.js"></script> -->
+    <script src="assets/js/vendor/jquery-ui.min.js"></script>
+    <script src="assets/js/vendor/jquery.ui.touch-punch.min.js"></script>
+    <script src="assets/js/vendor/jquery.countdown.min.js"></script>
+    <script src="assets/js/vendor/sal.js"></script>
+    <script src="assets/js/vendor/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/vendor/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/js/vendor/isotope.pkgd.min.js"></script>
+    <script src="assets/js/vendor/counterup.js"></script>
+    <script src="assets/js/vendor/waypoints.min.js"></script>
+
+    <script src="js/notification.js"></script>
+    <script src="js/my-account.js"></script>
+  </body>
+</html>
